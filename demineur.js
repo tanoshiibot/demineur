@@ -2,28 +2,19 @@ const howManyRastapopoulos = Math.floor(Math.random() * 6) + 10;
 const arr64 = [...Array(64).keys()] ;
 const arr64Random = arr64.sort(() => Math.random() - 0.5);
 const rastapopoulos = new Array(howManyRastapopoulos);
-let i = 0;
 
 
-for (let val of arr64) {
-    if (i >= howManyRastapopoulos) {
-        break;
-    }
-    else {
+for (let i = 0; i < howManyRastapopoulos; i++) {
     rastapopoulos[i] = arr64Random[i];
-    }
-    i++;
-}
-//rastapopoulos est une array qui contient howManyRastapopoulos nombres aléatoires.
-
-const positions = Array(64);
-
-for (let j=0; j<=63; j++) {
-    positions[j] = 0;
-    j++
     
 }
+//rastapopoulos est une array qui contient howManyRastapopoulos nombres aléatoires.
+console.log(... rastapopoulos);
+console.log(howManyRastapopoulos);
+
+const positions = Array(64).fill(0, 0);
 //positions est une array qui contient pour l'instant 64 zéro. Y'a sûrement des moyens beaucoup moins ridicules de créer ça mdr.
+console.log (...positions);
 
 function rastapopoulosDetector(x) {
     if (x === 0) {
@@ -78,47 +69,64 @@ function rastapopoulosDetector(x) {
     }
 }
 
-let l = 0
-for (let val of rastapopoulos){
+
+for (let l = 0; l < rastapopoulos.length; l++){
     rastapopoulosDetector(rastapopoulos[l]);
-    l++;
 }
 
+console.log(...rastapopoulos);
+console.log(...positions);
 //les bombbes ont toutes augmenté les cases autour d'elles de 1. Positions décrit combien de bombes il y a autour de chacune de ses valeurs, mais pas où sont les bombes.
 
-let k = 0
-
-function numberString(y){
+function numberString(y , z){
     if (y === 0) {
-        positions[k] = '||:zero:||';
+        positions[z] = '||:zero:||';
     } else if (y == 1) {
-        positions[k] = '||:one:||';
+        positions[z] = '||:one:||';
     } else if (y == 2){
-        positions[k] = '||:two:||';
+        positions[z] = '||:two:||';
     } else if (y == 3){
-        positions[k] = '||:three:||';
+        positions[z] = '||:three:||';
     } else if (y == 4){
-        positions[k] = '||:four:||';
+        positions[z] = '||:four:||';
     } else if (y == 5){
-        positions[k] = '||:five:||';
+        positions[z] = '||:five:||';
     } else if (y == 6){
-        positions[k] = '||:six:||';
+        positions[z] = '||:six:||';
     } else if (y == 7){
-        positions[k] = '||:seven:||';
+        positions[z] = '||:seven:||';
     } else if (y == 8){
-        positions[k] = '||:eight:||';
+        positions[z] = '||:eight:||';
     }
 }
 
-for (let val of positions){
-    numberString(positions[k]);
-    k++;
+for (let k = 0; k < positions.length; k++){
+    numberString(positions[k] , k);
 }
 //maintenant, notre array positions est composée des strings nécessaires pour en faire des émojis cachés sur discord.
 
-let m = 0
-for (let val of rastapopoulos){
+for (let m = 0; m < rastapopoulos.length; m++){
     positions[rastapopoulos[m]] = '||:Rastapopoulos:||';
-    m++;
 }
 //les cases qui contenaient des bombes s'appellent maintenant rastapopulos.
+
+const spliceNumbers = Array(8)
+
+console.log(...positions);
+
+for (n = 0; n < 64; n++){
+    if(Math.floor(n / 8) != Math.floor((n + 1) / 8)){
+        spliceNumbers[Math.floor(n / 8)] = n;
+    }
+}
+//spliceNumber est une array qui contient les chiffres de la dernière colonne.
+
+for (o = 7; o < 64; o += 8) {
+    const jumpLine = positions.splice(o, 0, "/n");
+}
+//on rajoute /n à la fin de chaque colonne pour passer à la ligne
+
+
+//positions.join('')
+console.log(...positions);
+
