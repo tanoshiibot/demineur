@@ -1,23 +1,22 @@
-module.exports = function generateMinesweeper() {
-    const howManyRastapopoulos = Math.floor(Math.random() * 6) + 10;
+module.exports = function generateMinesweeper(howManyBombs = 20 , emoji = '\u{1F4A3}') {
     const arr64 = [...Array(64).keys()] ;
     const arr64Random = arr64.sort(() => Math.random() - 0.5);
-    const rastapopoulos = new Array(howManyRastapopoulos);
+    const bombs = new Array(howManyBombs);
 
 
-    for (let i = 0; i < howManyRastapopoulos; i++) {
-        rastapopoulos[i] = arr64Random[i];
+    for (let i = 0; i < howManyBombs; i++) {
+        bombs[i] = arr64Random[i];
         
     }
-    //rastapopoulos est une array qui contient howManyRastapopoulos nombres aléatoires.
-    console.log(... rastapopoulos);
-    console.log(howManyRastapopoulos);
+    //bombs est une array qui contient howManyBombs nombres aléatoires.
+    console.log(... bombs);
+    console.log(howManyBombs);
 
     const positions = Array(64).fill(0, 0);
     //positions est une array qui contient pour l'instant 64 zéro. Y'a sûrement des moyens beaucoup moins ridicules de créer ça mdr.
     console.log (...positions);
 
-    function rastapopoulosDetector(x) {
+    function bombsDetector(x) {
         if (x === 0) {
             positions[x + 1]++;
             positions[x + 8]++;
@@ -71,11 +70,11 @@ module.exports = function generateMinesweeper() {
     }
 
 
-    for (let l = 0; l < rastapopoulos.length; l++){
-        rastapopoulosDetector(rastapopoulos[l]);
+    for (let l = 0; l < bombs.length; l++){
+        bombsDetector(bombs[l]);
     }
 
-    console.log(...rastapopoulos);
+    console.log(...bombs);
     console.log(...positions);
     //les bombbes ont toutes augmenté les cases autour d'elles de 1. Positions décrit combien de bombes il y a autour de chacune de ses valeurs, mais pas où sont les bombes.
 
@@ -106,8 +105,8 @@ module.exports = function generateMinesweeper() {
     }
     //maintenant, notre array positions est composée des strings nécessaires pour en faire des émojis cachés sur discord.
 
-    for (let m = 0; m < rastapopoulos.length; m++){
-        positions[rastapopoulos[m]] = '||<:Rastapopoulos:608321617482874913>||';
+    for (let m = 0; m < bombs.length; m++){
+        positions[bombs[m]] = `||${emoji}||`;
     }
     //les cases qui contenaient des bombes s'appellent maintenant rastapopulos.
 
@@ -131,6 +130,6 @@ module.exports = function generateMinesweeper() {
 
     return {
         positions: positions.join``,
-        howManyRastapopoulos
+        howManyBombs
     };
 }
