@@ -1,10 +1,3 @@
-const { Client } = require("discord.js");
-const token = require("./config/token.json");
-
-const cocotte = new Client();
-cocotte.login(token);
-
-
 const howManyRastapopoulos = Math.floor(Math.random() * 6) + 10;
 const arr64 = [...Array(64).keys()] ;
 const arr64Random = arr64.sort(() => Math.random() - 0.5);
