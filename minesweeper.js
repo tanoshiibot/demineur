@@ -1,20 +1,14 @@
-module.exports = function generateMinesweeper(howManyBombs = 20 , emoji = '\u{1F4A3}') {
+module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F4A3}') {
     const arr64 = [...Array(64).keys()] ;
     const arr64Random = arr64.sort(() => Math.random() - 0.5);
     const bombs = new Array(howManyBombs);
-
 
     for (let i = 0; i < howManyBombs; i++) {
         bombs[i] = arr64Random[i];
         
     }
-    //bombs est une array qui contient howManyBombs nombres aléatoires.
-    console.log(... bombs);
-    console.log(howManyBombs);
 
     const positions = Array(64).fill(0, 0);
-    //positions est une array qui contient pour l'instant 64 zéro. Y'a sûrement des moyens beaucoup moins ridicules de créer ça mdr.
-    console.log (...positions);
 
     function bombsDetector(x) {
         if (x === 0) {
@@ -74,10 +68,6 @@ module.exports = function generateMinesweeper(howManyBombs = 20 , emoji = '\u{1F
         bombsDetector(bombs[l]);
     }
 
-    console.log(...bombs);
-    console.log(...positions);
-    //les bombbes ont toutes augmenté les cases autour d'elles de 1. Positions décrit combien de bombes il y a autour de chacune de ses valeurs, mais pas où sont les bombes.
-
     function numberString(y , z){
         if (y === 0) {
             positions[z] = '||:zero:||';
@@ -103,30 +93,22 @@ module.exports = function generateMinesweeper(howManyBombs = 20 , emoji = '\u{1F
     for (let k = 0; k < positions.length; k++){
         numberString(positions[k] , k);
     }
-    //maintenant, notre array positions est composée des strings nécessaires pour en faire des émojis cachés sur discord.
 
     for (let m = 0; m < bombs.length; m++){
         positions[bombs[m]] = `||${emoji}||`;
     }
-    //les cases qui contenaient des bombes s'appellent maintenant rastapopulos.
 
     const spliceNumbers = Array(8)
-
-    console.log(...positions);
 
     for (n = 0; n < 64; n++){
         if(Math.floor(n / 8) != Math.floor((n + 1) / 8)){
             spliceNumbers[Math.floor(n / 8)] = n;
         }
     }
-    //spliceNumber est une array qui contient les chiffres de la dernière colonne.
 
     for (o = 8; o <= 64; o += 9) {
         const jumpLine = positions.splice(o, 0, "\n");
     }
-    //on rajoute \n à la fin de chaque colonne pour passer à la ligne
-
-    
 
     return {
         positions: positions.join``,
