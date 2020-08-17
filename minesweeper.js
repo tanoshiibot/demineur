@@ -1,13 +1,7 @@
 module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F4A3}') {
-    const arr64 = [...Array(64).keys()] ;
-    const arr64Random = arr64.sort(() => Math.random() - 0.5);
-    const bombs = new Array(howManyBombs);
-
-    for (let i = 0; i < howManyBombs; i++) {
-        bombs[i] = arr64Random[i];
-        
-    }
-
+    const arr64 = [...Array(64).keys()];
+    arr64.sort(() => Math.random() - 0.5);
+    const bombs = [...Array(howManyBombs)].map((x, i) => arr64[i]);
     const positions = Array(64).fill(0, 0);
 
     function bombsDetector(x) {
@@ -70,23 +64,23 @@ module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F
 
     function numberString(y , z){
         if (y === 0) {
-            positions[z] = '||:zero:||';
+            positions[z] = "||:zero:||";
         } else if (y == 1) {
-            positions[z] = '||:one:||';
+            positions[z] = "||:one:||";
         } else if (y == 2){
-            positions[z] = '||:two:||';
+            positions[z] = "||:two:||";
         } else if (y == 3){
-            positions[z] = '||:three:||';
+            positions[z] = "||:three:||";
         } else if (y == 4){
-            positions[z] = '||:four:||';
+            positions[z] = "||:four:||";
         } else if (y == 5){
-            positions[z] = '||:five:||';
+            positions[z] = "||:five:||";
         } else if (y == 6){
-            positions[z] = '||:six:||';
+            positions[z] = "||:six:||";
         } else if (y == 7){
-            positions[z] = '||:seven:||';
+            positions[z] = "||:seven:||";
         } else if (y == 8){
-            positions[z] = '||:eight:||';
+            positions[z] = "||:eight:||";
         }
     }
 
@@ -96,14 +90,6 @@ module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F
 
     for (let i = 0; i < bombs.length; i++){
         positions[bombs[i]] = `||${emoji}||`;
-    }
-
-    const spliceNumbers = Array(8)
-
-    for (let i = 0; i < 64; i++){
-        if(Math.floor(i / 8) != Math.floor((i + 1) / 8)){
-            spliceNumbers[Math.floor(i / 8)] = i;
-        }
     }
 
     for (let i = 8; i <= 64; i += 9) {
