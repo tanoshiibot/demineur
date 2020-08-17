@@ -30,7 +30,7 @@ bot.on("message", message => {
         }
 
         if (args.length > 0 && (args[0] < 0 || args[0] > 64 || isNaN(args[0]))){
-            message.channel.send('Choose a valid bombs number (between 0 and 64)');
+            message.channel.send('Choose a valid amount of bombs (between 0 and 64)');
         } else if (args.length < 1) {
             args[0] = bombsDefault;
             args[1] =  emojiDefault;
