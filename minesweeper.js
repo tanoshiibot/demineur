@@ -64,8 +64,8 @@ module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F
     }
 
 
-    for (let l = 0; l < bombs.length; l++){
-        bombsDetector(bombs[l]);
+    for (let i = 0; i < bombs.length; i++){
+        bombsDetector(bombs[i]);
     }
 
     function numberString(y , z){
@@ -90,24 +90,24 @@ module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F
         }
     }
 
-    for (let k = 0; k < positions.length; k++){
-        numberString(positions[k] , k);
+    for (let i = 0; i < positions.length; i++){
+        numberString(positions[i] , i);
     }
 
-    for (let m = 0; m < bombs.length; m++){
-        positions[bombs[m]] = `||${emoji}||`;
+    for (let i = 0; i < bombs.length; i++){
+        positions[bombs[i]] = `||${emoji}||`;
     }
 
     const spliceNumbers = Array(8)
 
-    for (n = 0; n < 64; n++){
-        if(Math.floor(n / 8) != Math.floor((n + 1) / 8)){
-            spliceNumbers[Math.floor(n / 8)] = n;
+    for (let i = 0; i < 64; i++){
+        if(Math.floor(i / 8) != Math.floor((i + 1) / 8)){
+            spliceNumbers[Math.floor(i / 8)] = i;
         }
     }
 
-    for (o = 8; o <= 64; o += 9) {
-        const jumpLine = positions.splice(o, 0, "\n");
+    for (let i = 8; i <= 64; i += 9) {
+        positions.splice(i, 0, "\n");
     }
 
     return {
