@@ -15,32 +15,14 @@ bot.on("message", message => {
 
         const [, ...args] = message.content.substring(PREFIX.length).split(/\s+/);
 
-        //You can change default values here.
-        const bombsDefault = 16;
-        const emojiDefault = "\u{1F4A3}"
-        //You can change default values here
-
-        function messageGame () {
-            const bombs = args[0];
-            console.log(args[0]);
-            const emoji = args[1];
-            const { howManyBombs, positions } = minesweeper(bombs , emoji);
-                    
-            message.channel.send(`${howManyBombs} ${emoji}\n${positions}`);
+        if (args && (args[0] < 0 || args[0] > 64 || isNaN(args[0]))){
+            return message.channel.send("Choose a valid amount of bombs (between 0 and 64)");
         }
 
-        if (args.length > 0 && (args[0] < 0 || args[0] > 64 || isNaN(args[0]))){
-            message.channel.send("Choose a valid amount of bombs (between 0 and 64)");
-        } else if (args.length < 1) {
-            args[0] = bombsDefault;
-            args[1] =  emojiDefault;
-            messageGame();
-        } else if (args.length == 1){
-            args[1] =  emojiDefault;
-            messageGame();
-        } else {
-            messageGame();
-        }
+        const bombs = + args[0] || 16;
+        const emoji = args[1] || "\u{1F4A3}";
+        const { howManyBombs, positions } = minesweeper(bombs, emoji);            
+        message.channel.send(`${howManyBombs} ${emoji}\n${positions}`);
 
     }
 });

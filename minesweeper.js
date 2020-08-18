@@ -1,4 +1,4 @@
-module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F4A3}') {
+module.exports = function generateMinesweeper(howManyBombs, emoji) {
     const arr64 = [...Array(64).keys()];
     arr64.sort(() => Math.random() - 0.5);
     const bombs = [...Array(howManyBombs)].map((x, i) => arr64[i]);
@@ -94,6 +94,14 @@ module.exports = function generateMinesweeper(howManyBombs = 16 , emoji = '\u{1F
 
     for (let i = 8; i <= 64; i += 9) {
         positions.splice(i, 0, "\n");
+    }
+
+        const spliceNumbers = Array(8)
+
+    for (let i = 0; i < 64; i++){
+        if(Math.floor(i / 8) != Math.floor((i + 1) / 8)){
+            spliceNumbers[Math.floor(i / 8)] = i;
+        }
     }
 
     return {

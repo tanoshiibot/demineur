@@ -10,7 +10,7 @@ I'll explain the following assuming you already have a discord bot and you know 
 
 1. Put minesweeper.js in the same folder as the main file of your bot.
 2. Add `const minesweeper = require("./minesweeper.js");` and all the `bot.on("message", message => {}` bloc into your main bot file.
-3. `const bombsDefault = 16` and `const emojiDefault = '\u{1F4A3}'` are the default values for the number of bombs, here 16, and the emoji used for bombs, here a bomb emoji. Feel free to change these values to better suit your needs.
+3. `const bombs = + args[0] || 16;` and `const emoji = args[1] || "\u{1F4A3}";` are the default values for the number of bombs, here 16, and the emoji used for bombs, here a bomb emoji. Feel free to change those values to better suit your needs.
 4. In `(message.content.startsWith(PREFIX + "minesweeper")`, you can change `(PREFIX + "minesweeper)` to better suit the need of your bot. If your bot doesn't have a PEFIX const, add "const PREFIX = '>'" to your main file. I'll assume you're using the same prefixe as mine.
 
 ## HOW DOES THE BOT WORK
