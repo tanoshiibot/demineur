@@ -96,14 +96,6 @@ module.exports = function generateMinesweeper(howManyBombs, emoji) {
         positions.splice(i, 0, "\n");
     }
 
-        const spliceNumbers = Array(8)
-
-    for (let i = 0; i < 64; i++){
-        if(Math.floor(i / 8) != Math.floor((i + 1) / 8)){
-            spliceNumbers[Math.floor(i / 8)] = i;
-        }
-    }
-
     return {
         positions: positions.join``,
         howManyBombs
