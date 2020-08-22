@@ -1,6 +1,19 @@
 module.exports = function generateMinesweeper(howManyBombs, emoji) {
     const arr64 = [...Array(64).keys()];
-    arr64.sort(() => Math.random() - 0.5);
+
+    function randomize(tab) {
+        var i, j, tmp;
+        for (i = tab.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            tmp = tab[i];
+            tab[i] = tab[j];
+            tab[j] = tmp;
+        }
+        return tab;
+    }
+
+    randomize(arr64);
+    
     const bombs = [...Array(howManyBombs)].map((x, i) => arr64[i]);
     const positions = Array(64).fill(0, 0);
 

@@ -15,7 +15,9 @@ bot.on("message", message => {
 
         const [, ...args] = message.content.substring(PREFIX.length).split(/\s+/);
 
-        if (args && (args[0] < 0 || args[0] > 64 || isNaN(args[0]))){
+        console.log(args[0]);
+
+        if (args && (args[0] < 0 || args[0] > 64 || (isNaN(args[0]) && args[0] !== undefined))){
             return message.channel.send("Choose a valid amount of bombs (between 0 and 64)");
         }
 
@@ -23,7 +25,6 @@ bot.on("message", message => {
         const emoji = args[1] || "\u{1F4A3}";
         const { howManyBombs, positions } = minesweeper(bombs, emoji);            
         message.channel.send(`${howManyBombs} ${emoji}\n${positions}`);
-
     }
 });
 
