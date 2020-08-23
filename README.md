@@ -49,11 +49,11 @@ You can play with custom emojis if they are available on your server.
 
 If you don't tell how many bombs you want, it will put the default amount of bombs into the grid.
 
-![Screenshot: grid with 16 shrek emojis](./screenshots/screenshot8.png)
+![Screenshot: grid with 16 shrek emojis](./screenshots/screenshot8.PNG)
 
 Discord can't post a message with 2000+ characters, and you sometimes hit the limit when you ask for a lot of bombs with a long emoji name. The bot will send you an error message.
 
-![Screenshot: error message](./screenshots/screenshot9.png)
+![Screenshot: error message](./screenshots/screenshot9.PNG)
 
 
 
