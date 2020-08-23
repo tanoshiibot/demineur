@@ -19,7 +19,7 @@ bot.on("message", message => {
         const defaultEmoji = "\u{1F4A3}";
         //change the value of defaultEmoji to change the default emoji
 
-        function sendMinesweeper (howManybombs, emoji, positions){
+        function sendMinesweeper (howManyBombs, emoji, positions){
             const messageMinesweeper = `${howManyBombs} ${emoji}\n${positions}`;
             if (messageMinesweeper.length > 2000){
             return message.channel.send("Too many characters (>2000). Don't put too much bombs if your emoji name is long.")
@@ -35,12 +35,14 @@ bot.on("message", message => {
             sendMinesweeper(howManyBombs, emoji, positions);
         } else if (args[0] < 0 || args[0] > 64 || (isNaN(args[0]) && args[0] !== undefined)){
             return message.channel.send("Choose a valid amount of bombs (between 0 and 64)");
+        } else {
+            const bombs = + args[0] || defaultBombs;
+            const emoji = args[1] || defaultEmoji;
+            const { howManyBombs, positions } = minesweeper(bombs, emoji);
+            sendMinesweeper(howManyBombs, emoji, positions);
         }
 
-        const bombs = + args[0] || defaultBombs;
-        const emoji = args[1] || defaultEmoji;
-        const { howManyBombs, positions } = minesweeper(bombs, emoji);
-        sendMinesweeper(howManyBombs, emoji, positions);
+
     }
 });
 

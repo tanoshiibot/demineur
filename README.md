@@ -39,7 +39,7 @@ You also can choose any other emoji that is on your discord to represent the bom
 
 ![Screenshot: 20 hearts in the grid](./screenshots/screenshot5.png)
 
-In this example, I created a game with 20 hearts. Because of the way the bot read your message, you have to first write the number of bombs, even if you use the default number, then write the emoji you use, otherwise the bot will think the emoji is the number of bombs and will tell you that it is not a valid number.
+In this example, I created a game with 20 hearts.
 
 You can play with custom emojis if they are available on your server.
 
@@ -47,7 +47,13 @@ You can play with custom emojis if they are available on your server.
 
 ![Screenshot: grid with 16 Rastapopoulos](./screenshots/screenshot6.png)
 
+If you don't tell how many bombs you want, it will put the default amount of bombs into the grid.
 
+![Screenshot: grid with 16 shrek emojis](./screenshots/screenshot8.png)
+
+Discord can't post a message with 2000+ characters, and you sometimes hit the limit when you ask for a lot of bombs with a long emoji name. The bot will send you an error message.
+
+![Screenshot: error message](./screenshots/screenshot9.png)
 
 
 
